@@ -1,8 +1,8 @@
 "use strict";
-var L = [];
+var L = []; // erstellt leere Liste
 
-for (var i = 1; i< 100; i+=2) {
-    L.push(i);
+for (var i = 1; i < 100; i += 2) {  // Variabelndefinition der for-Schleife
+    L.push(i); // Objekte zu Array hinzufügen
 }
 
-console.log(L)
+console.log(L) // Ausgabe des Array um zu testen ob die Schleife funktioniert
