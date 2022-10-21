@@ -10,7 +10,7 @@ class Timer extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {time: timer, render: true};
+        this.state = {time: timer, render: true, fehler: ''};
 
         this.buttonClicked = this.buttonClicked.bind(this);
         this.setTimer = this.setTimer.bind(this);
@@ -23,10 +23,15 @@ class Timer extends React.Component {
     }
 
     buttonClicked(event) {
-        this.setState({render:false});
-        clearInterval(clear);
-        this.setState({time: timer});
-        clear = setInterval(this.updateTime, 1000);
+        if (timer % 1 === 0){
+            clearInterval(clear);
+            this.setState({time: timer, fehler:'', render:false});
+            clear = setInterval(this.updateTime, 1000);
+        }
+        
+        else {
+            this.setState({fehler: "Bitte geben Sie eine ganze Zahl ein!"});
+        }
     }
 
     updateTime() {
@@ -34,8 +39,7 @@ class Timer extends React.Component {
             this.setState({time: this.state.time - 1});
         }
         else {
-            this.setState({time: "Fertig"});
-            this.setState({render: true})
+            this.setState({time: "Fertig", render: true});
         }
     }
 
@@ -51,7 +55,10 @@ class Timer extends React.Component {
                     <Button variant="contained" margin="12" onClick={this.buttonClicked}>Start</Button>
                 </Grid>
                 <Grid container style={{marginTop:12, fontFamily:'arial'}}>
-                    {this.state.time} <br/>
+                    {this.state.time}
+                </Grid>
+                <Grid container style={{marginTop:12, fontFamily:'arial', color:'red'}}>
+                    {this.state.fehler}
                 </Grid>
             </>
         )
