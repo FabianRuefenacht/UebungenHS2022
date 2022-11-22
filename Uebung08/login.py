@@ -94,13 +94,9 @@ async def shutdown():
     await database.disconnect()
 
 
-@app.get(f"""/users/Hansi""" )
-async def read_notes():
-    query = notes.select().where(notes.c.user== "Hansi")
-    return await database.fetch_all(query)
-@app.get(f"""/users/Musterli""" )
-async def read_notes():
-    query = notes.select().where(notes.c.user== "Musterli")
+@app.get("/users/{user}" )
+async def read_notes(user: str):
+    query = notes.select().where(notes.c.user== user)
     return await database.fetch_all(query)
 
 
