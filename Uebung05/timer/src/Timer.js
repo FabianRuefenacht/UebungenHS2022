@@ -15,7 +15,6 @@ class Timer extends React.Component {
         this.buttonClicked = this.buttonClicked.bind(this);
         this.setTimer = this.setTimer.bind(this);
         this.updateTime = this.updateTime.bind(this);
-
     }
 
     setTimer(event) {
@@ -27,9 +26,7 @@ class Timer extends React.Component {
             clearInterval(clear);
             this.setState({time: timer, fehler:'', render:false});
             clear = setInterval(this.updateTime, 1000);
-        }
-        
-        else {
+        } else {
             this.setState({fehler: "Bitte geben Sie eine ganze Zahl ein!"});
         }
     }
